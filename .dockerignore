@@ -1,0 +1,10 @@
+.git
+.vscode
+.gitignore
+Dockerfile
+deploy.sh
+target/
+.idea/
+*.iml
+.mvn/
+README.md

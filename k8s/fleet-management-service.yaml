@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleet-management-service
+spec:
+  selector:
+    app: fleet-management
+  ports:
+    - port: 8082
+      targetPort: 8082
+  type: NodePort

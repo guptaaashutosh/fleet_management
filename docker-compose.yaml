@@ -1,0 +1,30 @@
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: fleetdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  fleet-management:
+#    image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/fleet-management
+    build: .
+    image: fleet-management:latest
+    container_name: fleet-management
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "8082:8082"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/fleetdb
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+
+volumes:
+  postgres_data:

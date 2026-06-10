@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleet-management
+  template:
+    metadata:
+      labels:
+        app: fleet-management
+    spec:
+      containers:
+        - name: fleet-management
+          image: fleet-management:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres-service:5432/fleetdb
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
