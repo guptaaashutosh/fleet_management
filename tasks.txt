@@ -1,0 +1,126 @@
+Task1: Create a multi-stage docker image   -- done
+Create a Dockerfile for the application.
+Requirements:
+Use Java 21 image.
+Use multi-stage build.
+Expose port 8080.
+Keep final image lightweight.
+Expected Skills
+Dockerfile
+Multi-stage builds
+Image optimization
+
+
+Task 2: Create Jenkins Pipeline         -- done
+Create a Declarative Jenkins Pipeline with the following stages:
+Checkout
+Build
+Unit Test
+Docker Build
+Push to Registry
+Bonus
+Add a post { always {} } block to archive reports.
+Expected Skills
+Jenkinsfile
+Declarative Pipeline
+CI/CD concepts
+
+Task 3: Kubernetes Deployment            -- done
+Deploy the application using Kubernetes.
+Requirements:
+Deployment
+2 replicas
+Resource requests and limits
+Readiness probe
+Liveness probe
+Service
+ClusterIP
+Port 8080
+ConfigMap
+Provide:
+APP_ENV=dev
+LOG_LEVEL=INFO
+Expected Skills
+Deployment YAML
+Service YAML
+ConfigMap
+Health checks
+
+Task 4: Troubleshooting   -- done with answer of questions
+Application pod shows:
+STATUS
+CrashLoopBackOff
+Perform the following:
+a) Write the command to view logs.
+-> kubectl logs <pod-name>
+b) Write the command to inspect pod events.
+-> kubectl describe pod <pod-name>
+c) Mention three possible reasons for CrashLoopBackOff.
+Expected Skills
+kubectl logs
+kubectl describe
+Debugging approach: need to verify that the service is created. If in case it is not create,
+                    while recreating the pod automatically it gets random podIP. so, it should be monitored manually either through UI or commands.
+
+Task 5: AWS ECR Integration    -- done
+Image name:
+demo-app:v1
+Repository:
+123456789.dkr.ecr.us-east-1.amazonaws.com/demo-app
+Write commands to:
+Login to ECR.
+Tag image.
+Push image.
+Expected Skills
+AWS CLI
+ECR   -- pushed to ECR
+
+Task 6: Log Analysis      -- done
+Sample logs:
+INFO Application Started
+INFO Request received /users
+ERROR Database connection timeout
+ERROR Unable to fetch customer details
+INFO Health check success
+Splunk
+Write an SPL query to display only ERROR events.
+Elasticsearch
+Mention how these logs can be visualized using Kibana.
+- using the metrics data from logstash
+Expected Skills
+SPL
+Log analysis
+Kibana
+
+Task 7: Monitoring Scenario   -- done
+CPU usage of the application reaches 95%.
+Questions
+Which tool from the learning path can generate alerts?
+- Grafana
+Which tool can identify the root cause automatically?
+- Dravis AI
+Which metrics would you monitor?
+- application health, Memory usages, request/load on application, memory leakages
+Expected Skills
+Grafana
+Dynatrace
+Observability
+
+
+Task 8: Spring Boot Testing      -- done
+Given:
+public class UserService {
+    private UserRepository repository;
+    public User findUser(Long id) {
+        return repository.findById(id).orElseThrow();
+    }
+}
+a) Write a JUnit + Mockito test for findUser().
+b) Verify that repository method is invoked once.
+c) Mention one advantage of Testcontainers.
+- standalone integration test without creating database or any other dependent. Everythings is tested using docker containers for it.
+Expected Skills
+JUnit 5
+Mockito
+verify()
+Testcontainers
