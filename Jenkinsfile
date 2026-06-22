@@ -8,21 +8,27 @@ pipeline {
 
       steps {
 
-        echo 'Checking out code...'
-
         checkout scm
 
       }
 
     }
 
-    stage('Verify Files') {
+    stage('Build') {
 
       steps {
 
-        sh 'pwd'
+        sh 'mvn clean package'
 
-        sh 'ls -la'
+      }
+
+    }
+
+    stage('Test') {
+
+      steps {
+
+        sh 'mvn test'
 
       }
 
